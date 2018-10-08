@@ -8,7 +8,7 @@ import Home from './Home/Home';
 class App extends Component {
   render() {
     return (
-      <Welcome name="Utilisateur"/>
+      <Welcome />
       // <Home/>
     );
   }
