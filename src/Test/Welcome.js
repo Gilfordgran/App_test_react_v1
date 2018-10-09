@@ -41,14 +41,34 @@ class Welcome extends Component {
         });
     }
 
+    // supprime les chose écrites
+    deleteTodo(item) {
+        const array = this.state.items;
+        const index = array.indexOf(item);
+        array.splice(index, 1);
+        this.setState({
+            items: array
+        });
+    }
+
     // montre les choses à faire
+    renderTodos() {
+        return this.state.items.map((item) =>{
+            return (
+                <div key={item}>
+                    {item} <button onClick={this.deleteTodo.bind(this)}>X</button>
+                </div>
+            );
+
+        });
+    }
 
     render() {
         return (
             <div>
                 <h1>Compteur : {this.state.count}</h1>
-                <button onClick={() => this.addOne()}>+1</button>
                 <button onClick={() => this.lessOne()}>-1</button>
+                <button onClick={() => this.addOne()}>+1</button>
                 <br></br>
                 <br></br>
                 <br></br>
@@ -56,6 +76,9 @@ class Welcome extends Component {
                     <input value={this.state.userInput} type="text" placeholder="Ajout d'une tâche" onChange={this.onChange.bind(this)}></input>
                     <button onClick={this.addTodo.bind(this)}>Ajouter</button>
                 </form>
+                <div>
+                    {this.renderTodos()} 
+                </div>
             </div>
         );
     }
